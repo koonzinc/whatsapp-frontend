@@ -21,9 +21,15 @@ function App() {
     // .subscribe('messages') and 'inserted' is found in server.js 
     const channel = pusher.subscribe('messages');
     channel.bind('inserted', function (data) {
-      alert(JSON.stringify(data));
+      setMessages([...messages, data])
     });
-  }, [])
+
+    return () => {
+      channel.unbind_all();
+      channel.unsubscribe();
+    }
+
+  }, [messages])
 
   console.log(messages)
 
@@ -31,7 +37,7 @@ function App() {
     <div className="app">
       <div className="app__body">
         <Sidebar />
-        <Chat />
+        <Chat messages={messages} />
       </div>
     </div>
   );
