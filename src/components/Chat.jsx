@@ -47,7 +47,7 @@ const Chat = ({ messages }) => {
         <form>
           <input type="text" placeholder='Type a message' />
           <button type="submit">
-            Send a message
+            Send a messag
           </button>
         </form>
         <MicIcon />
